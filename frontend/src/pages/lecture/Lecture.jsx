@@ -258,42 +258,39 @@ const Lecture = ({ user }) => {
                 </div>
               )}
 
-              {lectures && lectures.length > 0 ? (
-                lectures.map((e, i) => (
-                  <>
-                    <div
-                      onClick={() => fetchLecture(e._id)}
-                      key={i}
-                      className={`lecture-number ${
-                        lecture._id === e._id && "active"
-                      }`}
-                    >
-                      {i + 1}. {e.title}{" "}
-                      {progress[0] &&
-                        progress[0].completedLectures.includes(e._id) && (
-                          <span
-                            style={{
-                              background: "red",
-                              padding: "2px",
-                              borderRadius: "6px",
-                              color: "greenyellow",
-                            }}
-                          >
-                            <TiTick />
-                          </span>
-                        )}
-                    </div>
-                    {user && user.role === "admin" && (
-                      <button
-                        className="common-btn"
-                        style={{ background: "red" }}
-                        onClick={() => deleteHandler(e._id)}
-                      >
-                        Delete {e.title}
-                      </button>
-                    )}
-                  </>
-                ))
+              {lectures && lectures.length > 0 ? (lectures.map((e) => (
+  <div key={e._id}>
+    <div
+      onClick={() => fetchLecture(e._id)}
+      className={`lecture-number ${lecture._id === e._id && "active"}`}
+    >
+      {e.title}{" "}
+      {progress[0] &&
+        progress[0].completedLectures.includes(e._id) && (
+          <span
+            style={{
+              background: "red",
+              padding: "2px",
+              borderRadius: "6px",
+              color: "greenyellow",
+            }}
+          >
+            <TiTick />
+          </span>
+        )}
+    </div>
+    {user && user.role === "admin" && (
+      <button
+        className="common-btn"
+        style={{ background: "red" }}
+        onClick={() => deleteHandler(e._id)}
+      >
+        Delete {e.title}
+      </button>
+    )}
+  </div>
+))
+
               ) : (
                 <p>No Lectures Yet!</p>
               )}

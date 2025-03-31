@@ -64,7 +64,11 @@ const AdminCourses = ({ user }) => {
         headers: {
           token: localStorage.getItem("token"),
         },
-      });
+      
+
+      }
+    );
+
 
       toast.success(data.message);
       setBtnLoading(false);
@@ -77,7 +81,9 @@ const AdminCourses = ({ user }) => {
       setCreatedBy("");
       setPrice("");
       setCategory("");
-    } catch (error) {
+      console.log(data);
+    } 
+    catch (error) {
       toast.error(error.response.data.message);
     }
   };
