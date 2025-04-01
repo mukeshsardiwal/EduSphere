@@ -22,16 +22,18 @@ import AdminCourses from "./admin/Courses/AdminCourses";
 import AdminUsers from "./admin/Users/AdminUsers";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
+import AddCourse from "./admin/AddCourse.jsx/AddCourse";
+
 
 const App = () => {
-  const { isAuth, user, loading } = UserData();
+  const { isAuth, user, loading,logoutUser } = UserData();
   return (
     <>
       {loading ? (
         <Loading />
       ) : (
         <BrowserRouter>
-          <Header isAuth={isAuth} />
+          <Header isAuth={isAuth} logoutUser={logoutUser}  />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -84,6 +86,10 @@ const App = () => {
             <Route
               path="/admin/course"
               element={isAuth ? <AdminCourses user={user} /> : <Login />}
+            />
+            <Route
+              path="/admin/new"
+              element={isAuth ? <AddCourse user={user} /> : <Login />}
             />
             <Route
               path="/admin/users"

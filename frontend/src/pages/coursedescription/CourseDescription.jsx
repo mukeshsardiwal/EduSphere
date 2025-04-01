@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./coursedescription.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { CourseData } from "../../context/CourseContext";
 import { server } from "../../main";
@@ -37,15 +36,13 @@ const CourseDescription = ({ user }) => {
       );
 
       const options = {
-        key: "rzp_test_2sRykxtwoMH88z", // ✅ Replace with your Razorpay Key
-        amount: order.amount, // ✅ Corrected: Ensure this is the actual amount
+        key: "rzp_test_2sRykxtwoMH88z",
+        amount: order.amount,
         currency: "INR",
         name: "E-learning",
         description: "Learn with us",
-        order_id: order.id, // ✅ Razorpay order ID
+        order_id: order.id,
         handler: async function (response) {
-          console.log("Razorpay Response:", response);
-
           const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
             response;
 
@@ -96,28 +93,37 @@ const CourseDescription = ({ user }) => {
       ) : (
         <>
           {course && (
-            <div className="course-description">
-              <div className="course-header">
-                <img src={`${server}/${course.image}`} alt="Course" className="course-image" />
-                <div className="course-info">
-                  <h2>{course.title}</h2>
-                  <p>Instructor: {course.createdBy}</p>
-                  <p>Duration: {course.duration} weeks</p>
+            <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6 my-8">
+              <div className="flex items-center gap-6 mb-6">
+                <img
+                  src={`${server}/${course.image}`}
+                  alt="Course"
+                  className="w-40 h-40 rounded-lg object-cover"
+                />
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-800">{course.title}</h2>
+                  <p className="text-gray-600">Instructor: {course.createdBy}</p>
+                  <p className="text-gray-600">Duration: {course.duration} weeks</p>
                 </div>
               </div>
 
-              <p>{course.description}</p>
-              <p>Let's get started with the course at ₹{course.price}</p>
+              <p className="text-gray-700 mb-4">{course.description}</p>
+              <p className="text-lg font-semibold text-indigo-600 mb-6">
+                Let's get started with the course at ₹{course.price}
+              </p>
 
               {user && user.subscription.includes(course._id) ? (
                 <button
                   onClick={() => navigate(`/course/study/${course._id}`)}
-                  className="common-btn"
+                  className="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-lg shadow-md transition"
                 >
                   Study
                 </button>
               ) : (
-                <button onClick={checkoutHandler} className="common-btn">
+                <button
+                  onClick={checkoutHandler}
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg shadow-md transition"
+                >
                   Buy Now
                 </button>
               )}

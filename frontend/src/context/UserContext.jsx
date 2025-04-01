@@ -11,6 +11,7 @@ export const UserContextProvider = ({ children }) => {
   const [btnLoading, setBtnLoading] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Login function
   async function loginUser(email, password, navigate, fetchMyCourse) {
     setBtnLoading(true);
     try {
@@ -33,6 +34,7 @@ export const UserContextProvider = ({ children }) => {
     }
   }
 
+  // Register function
   async function registerUser(name, email, password, navigate) {
     setBtnLoading(true);
     try {
@@ -52,6 +54,7 @@ export const UserContextProvider = ({ children }) => {
     }
   }
 
+  // OTP Verification function
   async function verifyOtp(otp, navigate) {
     setBtnLoading(true);
     const activationToken = localStorage.getItem("activationToken");
@@ -71,6 +74,7 @@ export const UserContextProvider = ({ children }) => {
     }
   }
 
+  // Fetch current user data
   async function fetchUser() {
     try {
       const { data } = await axios.get(`${server}/api/user/me`, {
@@ -88,9 +92,18 @@ export const UserContextProvider = ({ children }) => {
     }
   }
 
+  // Logout function to clear user data and token
+  const logoutUser = () => {
+    localStorage.clear(); // Clear localStorage to remove the token
+    setUser([]); // Clear user data
+    setIsAuth(false); // Update the auth status
+    toast.success("Logged out successfully!");
+  };
+
   useEffect(() => {
     fetchUser();
   }, []);
+
   return (
     <UserContext.Provider
       value={{
@@ -104,6 +117,7 @@ export const UserContextProvider = ({ children }) => {
         registerUser,
         verifyOtp,
         fetchUser,
+        logoutUser, // Add logout function to context
       }}
     >
       {children}

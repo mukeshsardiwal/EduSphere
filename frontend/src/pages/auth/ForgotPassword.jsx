@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./auth.css";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -15,29 +14,39 @@ const ForgotPassword = () => {
     setBtnLoading(true);
     try {
       const { data } = await axios.post(`${server}/api/user/forgot`, { email });
-
       toast.success(data.message);
       navigate("/login");
-      setBtnLoading(false);
     } catch (error) {
       toast.error(error.response.data.message);
-      setBtnLoading(false);
     }
+    setBtnLoading(false);
   };
+
   return (
-    <div className="auth-page">
-      <div className="auth-form">
-        <h2>Forgot Password</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="text">Enter Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <button disabled={btnLoading} className="common-btn">
-            {btnLoading ? "Please Wait..." : "Forgot Password"}
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-950 to-gray-900">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-96 h-auto">
+        <h2 className="text-2xl font-semibold text-center text-gray-900 mb-6">Forgot Password</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Enter Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Enter your email"
+              className="w-full p-3 border border-gray-300 rounded-md mt-1 focus:outline-none focus:ring-2 focus:ring-gray-700"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-gray-900 text-white p-3 rounded-md hover:bg-gray-700 transition duration-300"
+            disabled={btnLoading}
+          >
+            {btnLoading ? "Please Wait..." : "Reset Password"}
           </button>
         </form>
       </div>
