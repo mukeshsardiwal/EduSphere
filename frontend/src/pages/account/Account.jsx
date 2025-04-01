@@ -1,7 +1,6 @@
 import React from "react";
 import { MdDashboard } from "react-icons/md";
 import { UserData } from "../../context/UserContext";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ProfileSection from "../ProfileSection/ProfileSection";
 
@@ -23,6 +22,7 @@ const Account = ({ user }) => {
         >
           <MdDashboard /> Dashboard
         </button>
+        
         {user.role === "admin" && (
           <button
             onClick={() => navigate(`/admin/dashboard`)}

@@ -44,7 +44,8 @@ const Home = () => {
 
       <Courses />
       <Companies/>
-      {/* Testimonials Section */}
+
+      {/* Testimonials*/}
       <div className="mt-16 z-10">
         <motion.h2
           className="text-4xl font-bold text-center text-white mb-8"
@@ -59,40 +60,4 @@ const Home = () => {
     </div>
   );
 };
-
-// export default Home;
-
-
-
-
-// import React from 'react'
-// import {useNavigate } from 'react-router-dom'
-// import Testimonials from '../components/testimonials'
-
-// const Home = () => {
-//   const navigate = useNavigate();
-
-//   return (
-//     <div className="min-h-screen bg-black text-white font-comic ">
-//             <div className="flex flex-col items-center justify-center text-center py-20">
-//         <h1 className="text-[80px] font-extrabold mb-4">
-//           Unlock the Future <span> <br />of Education </span>
-//         </h1>
-//         <p className="text-xl text-gray-600 mb-8">
-//           Learn, Grow, Excel
-//         </p>
-//         <button
-//           className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
-//           onClick={() => navigate('/courses')}
-//         >
-//           Get Started
-//         </button>
-//       </div>
-//       <div className="mt-16">
-//         <Testimonials />
-//       </div>
-//     </div>
-//   )
-// }
-
 export default Home
