@@ -1,2 +1,10 @@
-node_modules
-.envx``
+# Ignore node_modules for both frontend and backend
+/frontend/node_modules/
+/server/node_modules/
+
+# Ignore .env files
+.env
+/frontend/.env
+/server/.env
+
+/server/uploads
