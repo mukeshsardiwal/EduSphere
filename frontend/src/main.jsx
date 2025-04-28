@@ -5,7 +5,7 @@ import { UserContextProvider } from "./context/UserContext.jsx";
 import { CourseContextProvider } from "./context/CourseContext.jsx";
 import "./index.css";
 
-export const server = "http://localhost:5000";
+export const server = "https://edusphere-backend-3b24gaxoe-mukeshsardiwals-projects.vercel.app/";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
